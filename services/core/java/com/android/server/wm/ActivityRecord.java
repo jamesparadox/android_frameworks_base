@@ -2390,6 +2390,11 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
      */
     private int evaluateStartingWindowTheme(ActivityRecord prev, String pkg, int originalTheme,
             int replaceTheme) {
+        //  Skip splash screen for POS launcher app
+        if ("com.android.calculator2".equals(pkg)) {
+            return 0;
+        }
+
         // Skip if the package doesn't want a starting window.
         if (!validateStartingWindowTheme(prev, pkg, originalTheme)) {
             return 0;
